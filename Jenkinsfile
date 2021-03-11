@@ -1,9 +1,9 @@
 pipeline {
-    // Author: Matthew Oberlies
+    // Author: Hugo Espejel
     agent any
     environment {
         // Can declare different environment variables to be used specifically within this pipeline
-        DOCKER_IMAGE_NAME = 'ikenoxamos/project1'
+        DOCKER_IMAGE_NAME = 'hespejel/project1'
         MAVEN_IMAGE_NAME = 'log-aggregation-demo:0.0.1-SNAPSHOT'
     }
 
@@ -31,9 +31,10 @@ pipeline {
             steps {
                 script {
                     timeout(time: 30, unit: 'MINUTES') {
-                        qualitygate = waitForQualityGate abortPipeline: true
+                        qualitygate = waitForQualityGate abortPipeline = true
                     }
                 }
+                
             }
         }
 
@@ -61,9 +62,9 @@ pipeline {
 
     // post {
     //     always {
-            // Can use the previously created qualitygate variable
-            // Perhaps include the results as part of a discordSend instruction
-            // Might use another "script" scope
+    //         // Can use the previously created qualitygate variable
+    //         // Perhaps include the results as part of a discord instruction
+    //         // Might use another "script" scope
     //     }
     // }
 }
